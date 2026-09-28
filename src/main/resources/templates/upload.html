@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Library Reminder System</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="card upload-card">
+
+            <h1>Library Reminder System</h1>
+
+            <h2>Upload Library Report</h2>
+
+            <p>
+                Upload the library CSV report to identify students
+                who need a book return reminder.
+            </p>
+
+            <form action="/upload"
+                  method="post"
+                  enctype="multipart/form-data">
+
+                <div class="upload-area">
+
+                    <div class="upload-icon">
+                        ↑
+                    </div>
+
+                    <h3>Select CSV File</h3>
+
+                    <p>
+                        Choose the library report you want to process.
+                    </p>
+
+                    <label for="file" class="file-label">
+                        Choose CSV File
+                    </label>
+
+                    <input type="file"
+                           id="file"
+                           name="file"
+                           accept=".csv"
+                           required>
+
+                    <p id="file-name" class="file-name">
+                        No file selected
+                    </p>
+
+                </div>
+
+                <button type="submit">
+                    Upload Report
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <script>
+        const fileInput = document.getElementById("file");
+        const fileName = document.getElementById("file-name");
+
+        fileInput.addEventListener("change", function () {
+
+            if (fileInput.files.length > 0) {
+                fileName.textContent = fileInput.files[0].name;
+            } else {
+                fileName.textContent = "No file selected";
+            }
+
+        });
+    </script>
+
+</body>
+</html>

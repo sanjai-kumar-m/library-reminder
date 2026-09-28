@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Error</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="card error-card">
+
+            <div class="error-icon">
+                !
+            </div>
+
+            <h1>Upload Failed</h1>
+
+            <p>
+                The uploaded CSV file could not be processed.
+            </p>
+
+            <div class="error-message">
+                <p th:text="${errorMessage}"></p>
+            </div>
+
+            <a href="/upload">
+                Upload Another File
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

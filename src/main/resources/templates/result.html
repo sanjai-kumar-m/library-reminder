@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reminder Students</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="card">
+
+            <h1>Students Requiring Reminder</h1>
+
+            <!-- EMPTY RESULT STATE -->
+            <div class="empty-state"
+                 th:if="${#lists.isEmpty(reminderRecords)}">
+
+                <div class="empty-icon">
+                    ✓
+                </div>
+
+                <h2>No Reminders Required</h2>
+
+                <p>
+                    All borrowed books have been returned.
+                    No students currently require a reminder.
+                </p>
+
+                <a href="/upload">
+                    Upload Another Report
+                </a>
+
+            </div>
+
+            <div th:unless="${#lists.isEmpty(reminderRecords)}">
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Student ID</th>
+                                <th>Student Name</th>
+                                <th>Email</th>
+                                <th>Book Name</th>
+                                <th>Due Date</th>
+                                <th>Email Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr th:each="record, stat : ${reminderRecords}">
+
+                                <td th:text="${record.studentId}"></td>
+
+                                <td th:text="${record.studentName}"></td>
+
+                                <td th:text="${record.email}"></td>
+
+                                <td th:text="${record.bookName}"></td>
+
+                                <td th:text="${record.dueDate}"></td>
+
+                                <td>
+                                    <span
+                                        th:class="${emailResults[stat.index].status == 'SENT'} ? 'status-badge status-sent' : 'status-badge status-failed'"
+                                        th:text="${emailResults[stat.index].status}">
+                                    </span>
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                <br>
+
+                <a href="/upload">
+                    Upload Another Report
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
